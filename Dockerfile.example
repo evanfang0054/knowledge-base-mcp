@@ -1,0 +1,44 @@
+# ----- 构建阶段 -----
+  FROM node:18-alpine AS builder
+  WORKDIR /app
+  
+  # 安装pnpm
+  RUN npm install -g pnpm
+  
+  # 复制package配置文件
+  COPY package.json pnpm-lock.yaml tsconfig.json ./
+  
+  # 复制源代码
+  COPY src ./src
+  
+  # 安装依赖并构建
+  RUN pnpm install && pnpm run build
+  
+  # ----- 生产阶段 -----
+  FROM node:lts-alpine
+  WORKDIR /app
+  
+  # 安装pnpm
+  RUN npm install -g pnpm
+  
+  # 复制构建产物
+  COPY --from=builder /app/dist ./dist
+  
+  # 复制package.json用于生产环境安装
+  COPY package.json pnpm-lock.yaml ./
+  
+  # 只安装生产依赖
+  RUN pnpm install --prod
+  
+  # 设置默认环境变量
+  ENV DIFY_API_KEY=your_api_key_here
+  ENV TRANSPORT_TYPE=http
+  ENV PORT=8008
+  ENV CACHE_TTL=3600000
+  ENV DIFY_BASE_URL=https://api.dify.ai/v1
+  
+  # 暴露HTTP端口
+  EXPOSE 8080
+  
+  # 默认命令，支持通过环境变量覆盖传输模式和端口
+  CMD ["node", "dist/index.js", "--transport", "$TRANSPORT_TYPE", "--port", "$PORT", "--dify-api-key", "$DIFY_API_KEY"]
