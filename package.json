@@ -17,6 +17,10 @@
   "keywords": ["mcp", "knowledge-base", "dify", "typescript"],
   "author": "",
   "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.16.0",
     "axios": "^1.7.7",

@@ -60,6 +60,14 @@ cp .env.example .env
 
 编辑`.env`文件，设置Dify API密钥和其他配置。
 
+4. 配置Docker
+
+```bash
+cp Dockerfile.example Dockerfile
+```
+
+编辑`Dockerfile`文件，设置Dify API密钥和其他配置。
+
 ### 配置说明
 
 在`.env`文件中可以配置以下参数：
