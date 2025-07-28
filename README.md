@@ -45,7 +45,7 @@ cd knowledge-base-mcp
 2. 安装依赖
 
 ```bash
-npm install
+pnpm install
 # 或者使用pnpm
 pnpm install
 ```
@@ -87,7 +87,7 @@ cp Dockerfile.example Dockerfile
 ### 构建项目
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### 运行服务
@@ -97,15 +97,15 @@ npm run build
 #### STDIO模式（默认）
 
 ```bash
-npm start
+pnpm start
 # 或
-npm run dev
+pnpm run dev
 ```
 
 #### HTTP模式
 
 ```bash
-npm run dev:http
+pnpm run dev:http
 # 或
 node dist/index.js --transport http --port 8008
 ```
@@ -113,7 +113,7 @@ node dist/index.js --transport http --port 8008
 #### SSE模式
 
 ```bash
-npm run dev:sse
+pnpm run dev:sse
 # 或
 node dist/index.js --transport sse --port 8006
 ```
@@ -125,57 +125,6 @@ node dist/index.js --transport sse --port 8006
 - `--transport <stdio|http|sse>`: 指定传输类型
 - `--port <number>`: 指定HTTP/SSE服务端口
 - `--dify-api-key <string>`: 指定Dify API密钥（覆盖环境变量设置）
-
-## 使用方法
-
-### 与Claude AI集成
-
-1. 启动知识库MCP服务
-2. 配置Claude API使用MCP连接到该服务
-3. 在Claude中使用以下工具：
-
-#### 解析知识库ID工具
-
-用于查找知识库ID和名称。
-
-```json
-{
-  "libraryName": "知识库名称关键词"
-}
-```
-
-#### 获取知识库文档工具
-
-用于从知识库中检索文档内容。
-
-```json
-{
-  "context7CompatibleLibraryID": "/knowledge-base-id",
-  "topic": "搜索关键词",
-  "tokens": 10000
-}
-```
-
-## 开发指南
-
-### 项目结构
-
-```
-src/
-├── tools/           # MCP工具实现
-├── types/           # TypeScript类型定义
-├── services/        # 服务实现
-├── utils/           # 工具函数
-├── config.ts        # 配置管理
-├── index.ts         # 入口文件
-└── server.ts        # MCP服务器实现
-```
-
-### 添加新工具
-
-1. 在`src/types/mcp.ts`中定义新工具的输入模式
-2. 在`src/tools/`中创建新工具实现
-3. 在`src/server.ts`中注册新工具
 
 ## 许可证
 

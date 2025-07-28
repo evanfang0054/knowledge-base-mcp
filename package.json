@@ -1,6 +1,6 @@
 {
   "name": "knowledge-base-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "知识库MCP服务，基于Dify MCP协议的两步式知识库检索系统",
   "main": "dist/index.js",
   "scripts": {
