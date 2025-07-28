@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * 知识库MCP服务入口
  */
