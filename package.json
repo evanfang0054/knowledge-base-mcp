@@ -1,6 +1,6 @@
 {
   "name": "knowledge-base-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "知识库MCP服务，基于Dify MCP协议的两步式知识库检索系统",
   "main": "dist/index.js",
   "scripts": {
@@ -13,6 +13,9 @@
     "start:sse": "node dist/index.js --transport sse --port 8006",
     "type-check": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.ts\""
+  },
+  "bin": {
+    "knowledge-base-mcp": "dist/index.js"
   },
   "keywords": ["mcp", "knowledge-base", "dify", "typescript"],
   "author": "",
